@@ -1,36 +1,17 @@
-import React, { FC, useState, useEffect, useMemo } from "react";
-import { Student } from "../../lib/types";
-import { mockStudents } from "../../lib/data";
-import { useDebounce } from "../../lib/hooks";
+import React, { FC, useState, useMemo } from "react";
+import { useDebounce, useStudents } from "../../lib/hooks";
 import SearchInput from "./SearchInput";
 import GradeFilter from "./GradeFilter";
 import StudentTable from "./StudentTable";
 
 const StudentList : FC = () => {
     // Initialize state to store students, loading, search term, and selected grade
-    const [students, setStudents] = useState<Student[]>([]);
-    const [loading, setLoading] = useState<boolean>(false);
     const [searchTerm, setSearchTerm] = useState<string>("");
     const [selectedGrade, setSelectedGrade] = useState<number | "all">("all");
 
-    useEffect(() => {
-        const fetchStudents = async () => {
-            setLoading(true);
-            try {
-                await new Promise((resolve) => setTimeout(resolve, 300));
-                setStudents(mockStudents);
-            } catch (err) {
-                console.error(err);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchStudents();
-    }, []);
-
     // 👇 Debounced value (500ms delay)
     const debouncedSearchTerm = useDebounce(searchTerm, 500);
+    const { students, loading, error } = useStudents(searchTerm);
 
     // Derived filtered data
   const filteredStudents = useMemo(() => {
@@ -49,6 +30,7 @@ const StudentList : FC = () => {
     const clearSearch = () => setSearchTerm("");
 
     if (loading) return <p>Loading students...</p>
+    if (error) return <p>Error fetching students...</p>
 
     return (
         <>

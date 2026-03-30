@@ -1,4 +1,4 @@
-import { Student } from "./types";
+import { Student } from "./Types";
 
 const mockStudents: Student[] = [
   { id: "1", name: "Alice Johnson", grade: 3, isActive: true },

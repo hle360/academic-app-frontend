@@ -4,3 +4,9 @@ export type Student = {
     grade: number;
     isActive: boolean;
 };
+
+export type UseStudentsResult = {
+  students: Student[];
+  loading: boolean;
+  error: string | null;
+};
