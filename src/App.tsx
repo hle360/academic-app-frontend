@@ -10,7 +10,8 @@ function App() {
       {/* Navigation */}
       <nav className='navbar'>
         <Link className='nav-links' to="/">Home</Link> |{" "}
-        <Link className='nav-links' to="/students">Students</Link>
+        <Link className='nav-links' to="/students">Students</Link> |{" "}
+        <Link className='nav-links' to="/classes">Classes</Link>
       </nav>
 
       {/* Routes */}

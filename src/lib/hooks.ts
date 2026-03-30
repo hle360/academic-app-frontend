@@ -19,10 +19,12 @@ export function useDebounce<T>(value: T, delay: number): T {
   return debouncedValue;
 }
 
-export function useStudents(debouncedSearchTerm: string): UseStudentsResult {
+export function useStudents(searchTerm: string): UseStudentsResult {
   const [students, setStudents] = useState<Student[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+
+  const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
   useEffect(() => {
     let isMounted = true; // prevents state updates if unmounted
@@ -56,7 +58,7 @@ export function useStudents(debouncedSearchTerm: string): UseStudentsResult {
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [debouncedSearchTerm]);
 
   return { students, loading, error };
 }

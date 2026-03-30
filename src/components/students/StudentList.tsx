@@ -1,5 +1,5 @@
 import React, { FC, useState, useMemo } from "react";
-import { useDebounce, useStudents } from "../../lib/hooks";
+import { useStudents } from "../../lib/hooks";
 import SearchInput from "./SearchInput";
 import GradeFilter from "./GradeFilter";
 import StudentTable from "./StudentTable";
@@ -9,23 +9,22 @@ const StudentList : FC = () => {
     const [searchTerm, setSearchTerm] = useState<string>("");
     const [selectedGrade, setSelectedGrade] = useState<number | "all">("all");
 
-    // 👇 Debounced value (500ms delay)
-    const debouncedSearchTerm = useDebounce(searchTerm, 500);
+    // Fetch students via useStudents hook
     const { students, loading, error } = useStudents(searchTerm);
 
-    // Derived filtered data
+    // Derived filtered data, don't need this if calling API
   const filteredStudents = useMemo(() => {
     return students.filter((student) => {
       const matchesSearch = student.name
         .toLowerCase()
-        .includes(debouncedSearchTerm.toLowerCase());
+        .includes(searchTerm.toLowerCase());
 
       const matchesGrade =
         selectedGrade === "all" || student.grade === selectedGrade;
 
       return matchesSearch && matchesGrade;
     });
-  }, [students, debouncedSearchTerm, selectedGrade]);
+  }, [students, searchTerm, selectedGrade]);
 
     const clearSearch = () => setSearchTerm("");
 

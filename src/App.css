@@ -1,9 +1,46 @@
-.container {
-   margin: 0 auto;
+/* Navbar container */
+.navbar {
+  display: flex;
+  max-width: 100%;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 32px;
+  background: #5e82d7; /* dark navy */
+  color: white;
+  font-family: Arial, sans-serif;
+
+  & .nav-links {
+    list-style: none;
+    display: flex;
+    text-decoration: none;
+    color: #fff;
+    font-size: 1rem;
+    position: relative;
+    transition: color 0.3s ease;
+    cursor: pointer;
+    margin: 0 1.25rem;
+  }
+
+    .nav-links:hover {
+    color: rgb(96, 179, 231);
+    text-decoration: underline;
+  }
+
+  .nav-links:visited {
+    color: rgb(77, 51, 208);
+    text-decoration: none;
+  }
+
+  .nav-links:visited:hover {
+    color: rgb(96, 179, 231);
+    text-decoration: none;
+  }
 }
+
 
 .student-search-bar {
   display: flex;
+  max-width: 100%;
   justify-content: center;
   align-items: center;
   border-radius: 0.30rem;
@@ -53,40 +90,3 @@
   }
 }
 
-/* Navbar container */
-.navbar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 16px 32px;
-  background: #5e82d7; /* dark navy */
-  color: white;
-  font-family: Arial, sans-serif;
-}
-
-/* Nav links container */
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 24px;
-}
-
-/* Links */
-.nav-links a {
-  text-decoration: none;
-  color: #cbd5f5;
-  font-size: 1rem;
-  position: relative;
-  transition: color 0.3s ease;
-  cursor: pointer;
-  margin: 0 1.25rem;
-}
-
-.nav-links a.active {
-  color: white;
-}
-
-.nav-links a:hover {
-  color: white;
-  text-decoration: underline;
-}

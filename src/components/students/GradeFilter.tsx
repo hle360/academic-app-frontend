@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { GradeFilterProps } from "../../lib/proptypes";
+import { GradeFilterProps } from "../../lib/PropTypes";
 
 const GradeFilter : FC<GradeFilterProps> = ({ selectedGrade, setSelectedGrade }) => {
     const grades = ["all", "1", "2", "3", "4", "5"];
