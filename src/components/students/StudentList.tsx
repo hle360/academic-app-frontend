@@ -1,6 +1,7 @@
 import React, { FC, useState, useEffect, useMemo } from "react";
 import { Student } from "../../lib/Types";
 import { mockStudents } from "../../lib/data";
+import { useDebounce } from "../../lib/hooks";
 import SearchInput from "./SearchInput";
 import GradeFilter from "./GradeFilter";
 import StudentTable from "./StudentTable";
@@ -16,7 +17,7 @@ const StudentList : FC = () => {
         const fetchStudents = async () => {
             setLoading(true);
             try {
-                await new Promise((resolve) => setTimeout(resolve, 500));
+                await new Promise((resolve) => setTimeout(resolve, 300));
                 setStudents(mockStudents);
             } catch (err) {
                 console.error(err);
@@ -28,19 +29,22 @@ const StudentList : FC = () => {
         fetchStudents();
     }, []);
 
+    // 👇 Debounced value (500ms delay)
+    const debouncedSearchTerm = useDebounce(searchTerm, 500);
+
     // Derived filtered data
   const filteredStudents = useMemo(() => {
     return students.filter((student) => {
       const matchesSearch = student.name
         .toLowerCase()
-        .includes(searchTerm.toLowerCase());
+        .includes(debouncedSearchTerm.toLowerCase());
 
       const matchesGrade =
         selectedGrade === "all" || student.grade === selectedGrade;
 
       return matchesSearch && matchesGrade;
     });
-  }, [students, searchTerm, selectedGrade]);
+  }, [students, debouncedSearchTerm, selectedGrade]);
 
     const clearSearch = () => setSearchTerm("");
 
