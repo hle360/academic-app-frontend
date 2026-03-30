@@ -52,3 +52,41 @@
     padding-left: 0.5rem;
   }
 }
+
+/* Navbar container */
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 32px;
+  background: #5e82d7; /* dark navy */
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+/* Nav links container */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 24px;
+}
+
+/* Links */
+.nav-links a {
+  text-decoration: none;
+  color: #cbd5f5;
+  font-size: 1rem;
+  position: relative;
+  transition: color 0.3s ease;
+  cursor: pointer;
+  margin: 0 1.25rem;
+}
+
+.nav-links a.active {
+  color: white;
+}
+
+.nav-links a:hover {
+  color: white;
+  text-decoration: underline;
+}
