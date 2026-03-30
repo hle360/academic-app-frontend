@@ -1,4 +1,4 @@
-import { Student } from "./Types";
+import { Student } from "./types";
 
 export type SearchInputProps = {
     searchTerm: string;

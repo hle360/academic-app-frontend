@@ -1,5 +1,5 @@
 import React, { FC, useState, useEffect, useMemo } from "react";
-import { Student } from "../../lib/Types";
+import { Student } from "../../lib/types";
 import { mockStudents } from "../../lib/data";
 import { useDebounce } from "../../lib/hooks";
 import SearchInput from "./SearchInput";

@@ -1,5 +1,5 @@
 import React, { FC } from "react"
-import { StudentTableProps } from "../../lib/PropTypes";
+import { StudentTableProps } from "../../lib/proptypes";
 
 const StudentTable: FC<StudentTableProps> = ({ students }) => {
     return (

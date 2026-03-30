@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { SearchInputProps } from "../../lib/PropTypes";
+import { SearchInputProps } from "../../lib/proptypes";
 
 const SearchInput: FC<SearchInputProps> = ( { searchTerm, setSearchTerm, onClear }) => {
     return (
